@@ -19,10 +19,6 @@ export const Header = () => `
     <aside class="sidebarNav">
         <nav class="nav">
 
-            <a href="#history">
-                История
-            </a>
-
             <a href="#clouds">
                 Облака слов
             </a>
@@ -145,7 +141,7 @@ export const InfoSections = () => `
     <section class="textSection" id="about">
         <h2>О проекте</h2>
         <p>
-            Над проектом работали студенты группы уги-243504
+            Над проектом работали студенты группы УГИ-243504
         </p>
         <h3>Участники проекта:</h3>
         <ul class="membersList">
@@ -155,15 +151,9 @@ export const InfoSections = () => `
             <li>Серебрякова Алёна Дмитриевна</li>
             <li>Смирнова Софья Дмитриевна</li>
         </ul>
-    </section>
-`;
-
-export const HistorySection = (bands) => `
-    <section class="textSection" id="history">
-        <h2>История</h2>
-        <div class="bands">
-            ${bands.map(band => BandCard(band, true, false)).join("")}
-        </div>
+        <p>
+            Екатеринбург, 2026
+        </p>
     </section>
 `;
 

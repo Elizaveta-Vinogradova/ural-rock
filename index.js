@@ -1,7 +1,7 @@
 import { bands } from './corpusData.js';
 import { grammarSigns } from './grammarSigns.js';
 import {
-    Header, CorpusSearch, BandsSection, InfoSections, BandCard, HistorySection, CloudsSection, LexicSpecialties,
+    Header, CorpusSearch, BandsSection, InfoSections, BandCard, CloudsSection, LexicSpecialties,
     BandCardAll, Logo
 } from './UIComponents.js';
 import {songsFirst, songsSecond} from "./corpusTexts.js";
@@ -16,7 +16,6 @@ indexContainer.innerHTML = `
                 <main class="content">
                     ${CorpusSearch()}
                     <div class="divider"></div>
-                    ${HistorySection(bands)}
                     ${CloudsSection()}
                     ${LexicSpecialties(bands)}
                     ${BandsSection()}
@@ -161,6 +160,10 @@ function findLinesForWord(bandName, wordForm) {
         songsData = songsSecond;
     }
 
+    console.log('bandName:', JSON.stringify(bandName));
+    console.log('wordForm:', JSON.stringify(wordForm));
+    console.log('songsData keys:', Object.keys(songsData || {}));
+
     if (!songsData || !wordForm) return [];
 
     const target = String(wordForm).toLowerCase();
@@ -170,6 +173,9 @@ function findLinesForWord(bandName, wordForm) {
         const lines = songsData[songName];
         lines.forEach(line => {
             const words = line.toLowerCase().match(/[а-яёa-z0-9]+/gi) || [];
+            if (line.toLowerCase().includes(target)) {
+                console.log('строка содержит подстроку:', line, '| разбито на слова:', words);
+            }
             if (words.includes(target)) {
                 result.push(line);
             }
@@ -234,10 +240,11 @@ function renderResults() {
                 <th>Лемма</th>
                 <th>Признаки</th>
                 <th>Частота</th>
+                <th>Контекст</th>
             </tr>
         </thead>
         <tbody>
-            ${found.slice(0, 20).map(word => {
+            ${found.slice(0, 10).map(word => {
         const signs = Array.isArray(word['Грамматические признаки'])
             ? word['Грамматические признаки'].join(', ')
             : word['Грамматические признаки'];

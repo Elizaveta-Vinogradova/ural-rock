@@ -155,7 +155,7 @@ function findLinesForWord(bandName, wordForm) {
 
     if (bandName === 'all') {
         songsData = { ...songsFirst, ...songsSecond };
-    } else if (bandName === 'Чичерин') {
+    } else if (bandName === 'Чичерина') {
         songsData = songsFirst;
     } else {
         songsData = songsSecond;

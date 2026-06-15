@@ -626,4 +626,14 @@ td {
 }
 
 
+.resultHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
 
+.pos {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 6px;
+}
